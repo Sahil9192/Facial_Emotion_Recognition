@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facial Emotion Recognition</title>
+</head>
+<body>
+    <h1>Facial Emotion Recognition</h1>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Predict Emotion</button>
+    </form>
+
+    {% if emotion %}
+        <h2>Predicted Emotion: {{ emotion }}</h2>
+        <img src="{{ img_path }}" alt="Uploaded Image" width="300px">
+    {% endif %}
+</body>
+</html>
