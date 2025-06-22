@@ -7,11 +7,16 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
 from sklearn.utils.class_weight import compute_class_weight
 
-# Paths
-BASE_DIR = os.path.join("data")
-MODEL_SAVE_PATH = os.path.join("..", "saved_models", "emotion_model.h5")
 
-# Hyperparameters
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))             # /src
+BASE_DIR = os.path.join(PROJECT_ROOT, "..", "data")                   # ../data
+SAVED_MODEL_DIR = os.path.join(PROJECT_ROOT, "..", "saved_models")
+os.makedirs(SAVED_MODEL_DIR, exist_ok=True)
+
+BEST_MODEL_PATH = os.path.join(SAVED_MODEL_DIR, "emotion_model.h5")
+FINAL_MODEL_PATH = os.path.join(SAVED_MODEL_DIR, "final_emotion_model.h5")
+
+
 IMG_SIZE = (48, 48)
 BATCH_SIZE = 64
 EPOCHS = 50
@@ -21,6 +26,8 @@ NUM_CLASSES = 7
 def main():
     print(" Loading data...")
     train_gen, test_gen = get_data_generators(BASE_DIR, IMG_SIZE, BATCH_SIZE)
+    print("Class label order:", train_gen.class_indices)
+
 
     print(" Building model...")
     model = build_model()
@@ -43,7 +50,7 @@ def main():
 
     print(" Setting up callbacks...")
     checkpoint = ModelCheckpoint(
-        filepath=MODEL_SAVE_PATH,
+        filepath=BEST_MODEL_PATH,
         monitor='val_accuracy',
         save_best_only=True,
         verbose=1
@@ -74,15 +81,20 @@ def main():
         verbose=1
     )
 
-    print(f" Model training complete. Best model saved to: {MODEL_SAVE_PATH}")
+    print(f" Model training complete. Best model saved to: {BEST_MODEL_PATH}")
 
-    # Visualization
+    
+    model.save(FINAL_MODEL_PATH)
+    print(f" Final model also saved to: {FINAL_MODEL_PATH}")
+
+    
     plot_training_curves(history)
+
 
 def plot_training_curves(history):
     history_dict = history.history
 
-    # Accuracy Plot
+    
     plt.figure(figsize=(10, 5))
     plt.plot(history_dict['accuracy'], label='Train Accuracy')
     plt.plot(history_dict['val_accuracy'], label='Validation Accuracy')
@@ -94,7 +106,7 @@ def plot_training_curves(history):
     plt.tight_layout()
     plt.show()
 
-    # Loss Plot
+    
     plt.figure(figsize=(10, 5))
     plt.plot(history_dict['loss'], label='Train Loss')
     plt.plot(history_dict['val_loss'], label='Validation Loss')
