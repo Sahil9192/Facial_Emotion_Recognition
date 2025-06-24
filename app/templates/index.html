@@ -1,15 +1,31 @@
+<!-- app/templates/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Facial Emotion Recognition</title>
-    <style>
-        body { text-align: center; font-family: Arial; }
-        h1 { color: #444; }
-        video { border: 2px solid #444; border-radius: 10px; }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Facial Emotion Recognition</h1>
-    <img src="{{ url_for('video') }}" width="720" />
+    <div class="container">
+        <h1> Facial Emotion Recognition</h1>
+        <div class="video-container">
+            <img src="{{ url_for('video') }}" alt="Webcam Stream" />
+        </div>
+        <div class="emotion-label">
+            <h2 id="emotion">Predicting...</h2>
+        </div>
+    </div>
+
+    <script>
+        // Poll the server every 1.5s for updated emotion
+        setInterval(() => {
+            fetch('/get_emotion')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("emotion").innerText = data;
+                });
+        }, 1500);
+    </script>
 </body>
 </html>
