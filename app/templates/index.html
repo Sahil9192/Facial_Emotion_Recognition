@@ -1,31 +1,46 @@
-<!-- app/templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Facial Emotion Recognition</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facial Emotion Detection</title>
+
+  <!-- Fonts and CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
-    <div class="container">
-        <h1> Facial Emotion Recognition</h1>
-        <div class="video-container">
-            <img src="{{ url_for('video') }}" alt="Webcam Stream" />
-        </div>
-        <div class="emotion-label">
-            <h2 id="emotion">Predicting...</h2>
-        </div>
-    </div>
 
-    <script>
-        // Poll the server every 1.5s for updated emotion
-        setInterval(() => {
-            fetch('/get_emotion')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("emotion").innerText = data;
-                });
-        }, 1500);
-    </script>
+<header data-aos="fade-down" data-aos-duration="1000">
+  <h1>AI-Powered Facial Emotion Detection</h1>
+  <p>Experience real-time and image-based emotion recognition using Deep Learning</p>
+</header>
+
+<div class="banner" data-aos="zoom-in" data-aos-duration="1200">
+  <img src="{{ url_for('static', filename='images/landing_banner.png') }}" alt="Facial Emotion Detection Banner">
+  
+</div>
+
+<section class="container">
+  <div class="card" data-aos="fade-right" data-aos-duration="1000">
+    <h2>Live Webcam Detection</h2>
+    <p>Analyze facial emotions instantly through your webcam feed.</p>
+    <a href="/video_page" class="btn">Start Live Detection</a>
+  </div>
+
+  <div class="card" data-aos="fade-left" data-aos-duration="1000">
+    <h2>Upload Image Detection</h2>
+    <p>Upload any image and get instant AI-powered emotion analysis.</p>
+    <a href="/upload_page" class="btn">Upload and Detect</a>
+  </div>
+</section>
+
+<!-- AOS Animation Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
 </body>
 </html>

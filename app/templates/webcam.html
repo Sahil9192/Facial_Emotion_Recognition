@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Webcam Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script>
+    async function fetchEmotion() {
+      const response = await fetch('/get_emotion');
+      const data = await response.text();
+      document.getElementById('emotionLabel').innerText = "Detected Emotion: " + data;
+    }
+    setInterval(fetchEmotion, 1000);
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>Live Webcam Emotion Detection</h1>
+  <p>Real-time emotion recognition using your webcam feed</p>
+</header>
+
+<div class="video-container">
+  <img src="{{ url_for('video') }}" alt="Live Video Feed">
+</div>
+
+<h3 id="emotionLabel" class="detected-emotion">Detected Emotion: Predicting...</h3>
+
+<div class="btn-group">
+  <a href="/" class="btn">Back to Home</a>
+</div>
+
+</body>
+</html>

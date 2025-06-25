@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0a0f1f, #1c2942, #283b5b);
+    color: #f0f0f0;
+    min-height: 100vh;
+    text-align: center;
+}
+
+header {
+    padding: 2rem 1rem;
+    background: rgba(0, 0, 50, 0.3);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 50, 0.5);
+}
+
+header h1, header h2 {
+    color: #00BFFF;   /* DeepSkyBlue shade */
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #aaa;
+}
+
+
+.btn, .option-button, .upload-btn, .button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #1E90FF, #0057B7);  /* Blue gradient */
+    color: #fff;
+    font-weight: bold;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(30,144,255,0.5);
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover, .option-button:hover, .upload-btn:hover, .button:hover {
+    background: linear-gradient(45deg, #0057B7, #003580);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(30,144,255,0.6);
+}
+
+
+
+.banner {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: transparent; /* Remove dark background behind banner image */
+}
+
+.banner img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.banner img:hover {
+    transform: scale(1.02);
+}
+
+.overlay-text {
+    display: none;  /* Hide overlay text for now to avoid overlapping with image text */
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    padding: 1.8rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 12px 35px rgba(0, 198, 255, 0.4);
+}
+
+.card h2 {
+    color: #00AEEF;
+}
+
+.card p {
+    color: #ddd;
+}
+.video-container {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.video-container img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.upload-form input[type="file"] {
+    padding: 10px;
+    margin: 1rem 0;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    border: 1px solid #00c6ff;
+}
+
+.upload-form button {
+    margin-top: 1rem;
+}
+
+#result img {
+    margin-top: 1.5rem;
+    max-width: 350px;
+    border-radius: 12px;
+    padding: 5px;
+    border: 2px solid #00BFFF;
+    background-color: rgba(0, 0, 50, 0.2);
+}
+
+
+.btn-group {
+    margin-top: 2rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media(max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-container img {
+        width: 90%;
+        height: auto;
+    }
+}
