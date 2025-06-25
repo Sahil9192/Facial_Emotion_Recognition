@@ -20,7 +20,7 @@ Built using **Python**, **Flask**, **TensorFlow**, **OpenCV**, and **HTML/CSS**.
 ---
 
 ## 🏗️ Project Folder Structure
-
+```bash
 Facial_Emotion_Recognition/
 ├── app/
 │ ├── app.py
@@ -44,8 +44,7 @@ Facial_Emotion_Recognition/
 ├── README.md
 └── .gitignore
 
-
----
+```
 
 
 ## ⚙️ Installation & Running Locally
